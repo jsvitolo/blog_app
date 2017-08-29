@@ -15,7 +15,7 @@ defmodule BlogApp.Blog.Post do
   @doc false
   def changeset(%Post{} = post, attrs) do
     post
-    |> cast(attrs, [:title, :body])
-    |> validate_required([:title, :body])
+    |> cast(attrs, [:title, :body, :accounts_users_id])
+    |> validate_required([:title, :body, :accounts_users_id])
   end
 end
