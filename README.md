@@ -1,4 +1,6 @@
-# BlogApp Phoenix GraphQL Absinthe Tutorial
+# BlogApp
+
+##  Phoenix GraphQL Absinthe Tutorial
 
 To start your Phoenix server with graphiQL:
 
