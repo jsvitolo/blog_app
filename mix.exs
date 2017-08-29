@@ -43,7 +43,10 @@ defmodule BlogApp.Mixfile do
       {:absinthe_plug, "~> 1.3.0"},
       {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git" },
       {:poison, "~> 3.1"},
-      {:faker, "~> 0.8"}
+      {:faker, "~> 0.8"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 1.0"},
+      {:guardian, "~> 0.14"}
     ]
   end
 

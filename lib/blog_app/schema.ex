@@ -23,9 +23,7 @@ defmodule BlogApp.Schema do
 
     field :update_blog_post, type: :blog_post do
       arg :id, non_null(:integer)
-      arg :title, non_null(:string)
-      arg :body, non_null(:string)
-      arg :accounts_users_id, non_null(:integer)
+      arg :post, :update_post_params
 
       resolve &BlogApp.Blog.PostResolver.update/2
     end
@@ -34,6 +32,13 @@ defmodule BlogApp.Schema do
       arg :id, non_null(:integer)
 
       resolve &BlogApp.Blog.PostResolver.delete/2
+    end
+
+    field :update_account_user, type: :accounts_user do
+      arg :id, non_null(:integer)
+      arg :user, :update_user_params
+
+      resolve &BlogApp.Accounts.UserResolver.update/2
     end
   end
 end

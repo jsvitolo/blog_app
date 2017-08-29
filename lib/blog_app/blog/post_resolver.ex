@@ -11,9 +11,9 @@ defmodule BlogApp.Blog.PostResolver do
     |> Repo.insert
   end
 
-  def update(args, _info) do
-    Repo.get!(Post, args.id)
-    |> Post.changeset(args)
+  def update(%{id: id, post: post_params}, _info) do
+    Repo.get!(Post, id)
+    |> Post.changeset(post_params)
     |> Repo.update
   end
 
