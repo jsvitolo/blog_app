@@ -27,4 +27,8 @@ defmodule BlogApp.Schema.Types do
     field :body, :string
     field :accounts_users_id, :integer
   end
+
+  object :session do
+    field :token, :string
+  end
 end

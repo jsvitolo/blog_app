@@ -40,5 +40,12 @@ defmodule BlogApp.Schema do
 
       resolve &BlogApp.Accounts.UserResolver.update/2
     end
+
+    field :login, type: :session do
+      arg :email, non_null(:string)
+      arg :password, non_null(:string)
+
+      resolve &BlogApp.Accounts.UserResolver.login/2
+    end
   end
 end

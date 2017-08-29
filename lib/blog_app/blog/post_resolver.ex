@@ -1,8 +1,22 @@
 defmodule BlogApp.Blog.PostResolver do
   alias BlogApp.{Blog.Post, Repo}
 
+  import Ecto.Query, only: [where: 2]
+
+  # def all(_args, _info) do
+  #   {:ok, Repo.all(Post)}
+  # end
+  def all(_args, %{context: %{current_user: %{id: id}}}) do
+    posts =
+      Post
+      |> where(accounts_users_id: ^id)
+      |> Repo.all
+
+    {:ok, posts}
+  end
+
   def all(_args, _info) do
-    {:ok, Repo.all(Post)}
+    {:error, "Not Authorized"}
   end
 
   def create(args, _info) do

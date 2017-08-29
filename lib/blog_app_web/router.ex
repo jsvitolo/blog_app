@@ -1,19 +1,18 @@
 defmodule BlogAppWeb.Router do
   use BlogAppWeb, :router
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :graphql do
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+    plug Guardian.Plug.LoadResource
+    plug BlogApp.Context
   end
 
-  scope "/api", BlogAppWeb do
-    pipe_through :api
+  scope "/api" do
+    pipe_through :graphql
 
-    resources "/users", UserController, except: [:new, :edit]
-    resources "/posts", PostController, except: [:new, :edit]
+    forward "/", Absinthe.Plug,
+      schema: BlogApp.Schema
   end
-
-  forward "/graph", Absinthe.Plug,
-    schema: BlogApp.Schema
 
   forward "/graphiql", Absinthe.Plug.GraphiQL,
     schema: BlogApp.Schema
